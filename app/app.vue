@@ -19,7 +19,6 @@ const title = 'Homelist'
 const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
 
 const task = ref('');
-const arrayUsuario = ref([])
 const usuarioLogado = ref(null)
 
 const erro = ref(false)
@@ -37,10 +36,7 @@ onMounted(async () => {
 provide('erroP', erro)
 provide('tituloErroP', tituloErro)
 provide('descricaoErroP', descricaoErro)
-
-provide('arrayUsuarioP', arrayUsuario)
 provide('usuarioLogadoP', usuarioLogado)
-
 provide('taskP', task)
 
 useSeoMeta({

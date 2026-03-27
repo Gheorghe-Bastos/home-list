@@ -2,7 +2,6 @@
 import { inject, reactive} from 'vue'
 
 const supabase = useSupabaseClient()
-const arrayUsuario = inject('arrayUsuarioP')
 const usuarioLogado = inject('usuarioLogadoP')
 
 const usuario = reactive({
@@ -23,7 +22,7 @@ function verificar(state) {
 
 async function redirecionar() {
 
-  const { data: usuarioExiste, error } = await supabase
+  const { data: usuarioExiste} = await supabase
     .from('perfis')
     .select('*')
     .eq('nome', usuario.nome)
@@ -46,9 +45,13 @@ async function redirecionar() {
 
     toast.add({ title: 'Bem Vindo', description: 'Redirecionando para as tarefas...' })
     await navigateTo('/tasksPage')
-  } else if (usuarioExiste.senha !== usuario.senha) {
+  } 
+  
+  else if (usuarioExiste.senha !== usuario.senha) {
     toast.add({ title: 'Falha no Login!', description: 'Senha incorreta.', color: 'error' })
-  } else {
+  } 
+  
+  else {
     usuarioLogado.value = usuarioExiste
     localStorage.setItem('usuario_sessao', JSON.stringify(usuarioLogado.value))
     
@@ -75,7 +78,7 @@ async function onError(event) {
   <div class="flex flex-col items-center">
     <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas anotações onde, como e quando você quiser!"
       :ui="{
-        container: 'flex flex-col py-6 sm:py-8 lg:py-20'
+        container: 'flex flex-col py-2 sm:py-3 lg:py-8'
       }" />
     <div class="flex p-6 size-80 border-1 border-yellow-800 items-center justify-center rounded-xl">
       <UForm 
