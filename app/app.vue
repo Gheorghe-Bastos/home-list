@@ -4,7 +4,7 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   link: [
-    { rel: 'icon', href: '/Salo Hometech logo.png' }
+    { rel: 'icon', href: '/favicon (2).png' }
   ],
   htmlAttrs: {
     lang: 'pt-br'

@@ -77,7 +77,7 @@ async function onError(event) {
       :ui="{
         container: 'flex flex-col py-6 sm:py-8 lg:py-20'
       }" />
-    <div class="flex p-6 size-80 border-1 items-center justify-center rounded-xl">
+    <div class="flex p-6 size-80 border-1 border-yellow-800 items-center justify-center rounded-xl">
       <UForm 
         :ui="{base: 'flex flex-col w-xl items-center'}"
         :state="usuario" 
@@ -85,8 +85,11 @@ async function onError(event) {
         :validate="verificar"
         @submit="redirecionar" 
         @error="onError"
-      >
-        <h1 class="flex text-2xl font-extrabold">Login</h1>
+      > 
+      <div class="flex gap-1 items-center">
+        <img class='w-18' src="/loginHomelist.png"/>
+        <h1 class="text-2xl mt-5 font-extrabold">Login</h1>
+      </div>
         <UFormField label="Usuário" name="nome">
           <UInput v-model="usuario.nome" placeholder="Digite seu usuário" />
         </UFormField>

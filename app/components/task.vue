@@ -41,14 +41,17 @@ async function marcarTask(index) {
   </div>
   <div v-for="(task, index) in usuarioLogado?.tasks" class="flex flex-col items-center w-full max-w-sm ">
     <UAlert :ui="{     
-    actions: 'flex self-end absolute '
+    actions: 'flex self-end absolute ',
+    root: 'break-words'
     }"
     classe="flex items-center"
     :color="task.concluida ? 'success' : 'primary'"
     variant="outline" 
-    :title="'Tarefa ' + (index + 1)" 
-    :description="task.textoTask"
+    :title="'Tarefa ' + (index + 1)"
     icon="mdi:invoice-text-edit">
+      <template #description>
+        <p class="max-w-[75%]">{{ task.textoTask }}</p>
+      </template>
       <template #actions>
         <UButton
         @click="excluirTask(index)"

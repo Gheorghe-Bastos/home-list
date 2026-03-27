@@ -10,8 +10,8 @@
   }">
     <template #title>
       <div class="flex justify-center items-center">
-        <img src="/Salo Hometech logo.png" class="w-10 h-auto object-contain" />
-        <h1 class="text-3xl">Homelist</h1>
+        <img src="/favicon (2).png" class="w-17 h-auto object-contain" />
+        <h1 class="text-3xl mt-4">Homelist</h1>
       </div>
     </template>
 
@@ -20,7 +20,7 @@
       <UColorModeButton color="primary" />
 
       <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
-        <UButton color="primary" variant="ghost" to="https://github.com/nuxt/ui" target="_blank"
+        <UButton color="primary" variant="ghost" to="https://github.com/Gheorghe-Bastos" target="_blank"
           icon="i-simple-icons-github" aria-label="GitHub" />
       </UTooltip>
     </template>
