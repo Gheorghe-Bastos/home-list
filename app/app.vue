@@ -11,7 +11,7 @@ useHead({
   }
 })
 
-import { ref, provide} from 'vue';
+import { ref, provide, onMounted} from 'vue';
 import footerComp from './components/footerComp.vue'
 import headerComp from './components/headerComp.vue'
 
@@ -20,11 +20,19 @@ const description = 'A production-ready starter template powered by Nuxt UI. Bui
 
 const task = ref('');
 const arrayUsuario = ref([])
-const usuarioLogado = ref(undefined)
+const usuarioLogado = ref(null)
 
 const erro = ref(false)
 const tituloErro = ref('')
 const descricaoErro = ref('')
+
+onMounted(async () => {
+
+  const salvo = localStorage.getItem('usuario_sessao')
+  if (salvo) {
+    usuarioLogado.value = JSON.parse(salvo)
+  }
+})
 
 provide('erroP', erro)
 provide('tituloErroP', tituloErro)

@@ -2,6 +2,7 @@
 
 import { ref, inject } from 'vue'
 
+const supabase = useSupabaseClient()
 const usuarioLogado = inject('usuarioLogadoP')
 const taskInput = inject('taskP')
 const erro = inject('erroP')
@@ -10,7 +11,7 @@ const descricaoErro = inject('descricaoErroP')
 const limiteCaracteres = ref(80)
 
 
-function criarTask() {
+async function criarTask() {
     erro.value = false
 
     if (taskInput.value.length > limiteCaracteres.value) {
@@ -36,11 +37,19 @@ function criarTask() {
         }
     }
     else {
-        usuarioLogado.value.arrayTask.push({
+        usuarioLogado.value.tasks.push({
             textoTask: taskInput.value,
             concluida: false
         })
 
+        await supabase
+        
+            .from('perfis')
+            .update({ tasks: usuarioLogado.value.tasks }) 
+            .eq('id', usuarioLogado.value.id)
+
+
+        localStorage.setItem('usuario_sessao', JSON.stringify(usuarioLogado.value))
         taskInput.value = ''
         erro.value = false
     }

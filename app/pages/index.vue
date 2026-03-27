@@ -1,6 +1,7 @@
 <script setup>
 import { inject, reactive} from 'vue'
 
+const supabase = useSupabaseClient()
 const arrayUsuario = inject('arrayUsuarioP')
 const usuarioLogado = inject('usuarioLogadoP')
 
@@ -11,56 +12,50 @@ const usuario = reactive({
 
 function verificar(state) {
   const errors = []
-  if (!state.nome) errors.push({ name: 'nome', message: 'Campo obrigatório' })
-  if (!state.senha) errors.push({ name: 'password', message: 'Campo obrigatório' })
-
-  if (state.nome && state.senha) {
-    const usuarioExiste = buscar(state.nome)
-
-    if (usuarioExiste && usuarioExiste.senha !== state.senha) {
-      errors.push({ name: 'senha', message: 'Senha incorreta' })
+  if (!state.nome) {
+     errors.push({ name: 'nome', message: 'Digite seu nome' })
     }
+  else if (!state.senha) {
+    errors.push({ name: 'password', message: 'Digite sua senha' })
   }
   return errors
 }
 
-function buscar(emailRetornar) {
-  for (let i = 0; i < arrayUsuario.value.length; i++) {
-    const usuarioEncontrado = arrayUsuario.value[i]
-    if (usuarioEncontrado.nome === emailRetornar) {
-      return usuarioEncontrado
-    }
-  }
-  return null
-}
-
 async function redirecionar() {
-  const usuarioExiste = buscar(usuario.nome)
+
+  const { data: usuarioExiste, error } = await supabase
+    .from('perfis')
+    .select('*')
+    .eq('nome', usuario.nome)
+    .single()
 
   if (!usuarioExiste) {
-    const usuarioLogin = {
-      nome: usuario.nome,
-      senha: usuario.senha,
-      arrayTask: []
-    }
-    arrayUsuario.value.push(usuarioLogin)
-    usuarioLogado.value = usuarioLogin
+
+    const { data: usuarioNovo, error: errCria } = await supabase
+      .from('perfis')
+      .insert([{ nome: usuario.nome, senha: usuario.senha, tasks: [] }])
+      .select()
+      .single()
+
+    if (errCria) {
+    return toast.add({ title: 'Erro', color: 'error', description: errCria.message })
+    }  
+
+    usuarioLogado.value = usuarioNovo
+    localStorage.setItem('usuario_sessao', JSON.stringify(usuarioLogado.value))
 
     toast.add({ title: 'Bem Vindo', description: 'Redirecionando para as tarefas...' })
     await navigateTo('/tasksPage')
-  } else if (usuarioExiste.senha !== usuario.value.senha) {
+  } else if (usuarioExiste.senha !== usuario.senha) {
     toast.add({ title: 'Falha no Login!', description: 'Senha incorreta.', color: 'error' })
   } else {
-
     usuarioLogado.value = usuarioExiste
+    localStorage.setItem('usuario_sessao', JSON.stringify(usuarioLogado.value))
+    
     toast.add({ title: 'Bem Vindo', description: 'Redirecionando para as tarefas...' })
     await navigateTo('/tasksPage')
   }
-  
-  provide('usuarioLogadoP', usuarioLogado)
 }
-
-
 
 const toast = useToast()
 
@@ -85,9 +80,9 @@ async function onError(event) {
     <div class="flex p-6 size-80 border-1 items-center justify-center rounded-xl">
       <UForm 
         :ui="{base: 'flex flex-col w-xl items-center'}"
-        :validate="verificar" 
         :state="usuario" 
         class="space-y-4" 
+        :validate="verificar"
         @submit="redirecionar" 
         @error="onError"
       >

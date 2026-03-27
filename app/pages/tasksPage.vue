@@ -13,12 +13,12 @@ const usuarioLogado = inject('usuarioLogadoP')
       :ui="{
         container: 'flex flex-col py-0 sm:py-4 lg:py-17'
       }" />
-    <div class="flex flex-col w-full gap-2 items-center">
+    <div v-if="usuarioLogado" class="flex flex-col w-full gap-2 items-center">
     
       <div class="flex justify-center gap-1">
-        <UAvatar :alt="usuarioLogado.nome" size="md" />
+        <UAvatar :alt="usuarioLogado?.nome" size="md" />
         <UUser
-          :name="usuarioLogado.nome"
+          :name="usuarioLogado?.nome"
         />
       </div>
 
