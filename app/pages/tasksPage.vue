@@ -14,16 +14,13 @@ const usuarioLogado = inject('usuarioLogadoP')
         container: 'flex flex-col py-0 sm:py-4 lg:py-17'
       }" />
     <div class="flex flex-col w-full gap-2 items-center">
-      
-      <UUser
-        :name="usuarioLogado.nome"
-        description="Software Engineer"
-        :avatar="{
-          src: 'https://i.pravatar.cc/150?u=john-doe',
-          loading: 'lazy',
-          icon: 'i-lucide-image'
-        }"
-      />
+    
+      <div class="flex justify-center gap-1">
+        <UAvatar :alt="usuarioLogado.nome" size="md" />
+        <UUser
+          :name="usuarioLogado.nome"
+        />
+      </div>
 
       <PreencherTask />
       <div class="h-95 sm:h-76 md:h-78
