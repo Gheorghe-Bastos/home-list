@@ -15,7 +15,7 @@ import { ref, provide, onMounted} from 'vue';
 import footerComp from './components/footerComp.vue'
 import headerComp from './components/headerComp.vue'
 
-const title = 'SALO - Homelist'
+const title = 'Homelist'
 const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
 
 const task = ref('');
