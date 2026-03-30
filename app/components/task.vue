@@ -30,8 +30,8 @@ async function marcarTask(index) {
 </script>
 
 <template>
-  <div v-if="erro" class="flex w-sm items-center">
-      <UAlert
+  <div v-if="erro" class="flex w-sm items-center mt-0.75 mb-0.75">
+      <UAlert class="shadow-[0px_0px_4px_#00000083] dark:shadow-0"
       color="error"
       :ui="{close: 'p-0'}"
       variant="subtle"
@@ -40,13 +40,14 @@ async function marcarTask(index) {
       </UAlert>
   </div>
   <div v-for="(task, index) in usuarioLogado?.tasks" class="flex flex-col items-center w-full max-w-sm ">
-    <UAlert :ui="{     
+    <UAlert class="mt-0.75 mb-0.75 shadow-[0px_0px_4px_#00000083] dark:shadow-0"
+    :ui="{     
     actions: 'flex self-end absolute ',
     root: 'break-words'
     }"
     classe="flex items-center"
     :color="task.concluida ? 'success' : 'primary'"
-    variant="outline" 
+    variant="outline"
     :title="'Tarefa ' + (index + 1)"
     icon="mdi:invoice-text-edit">
       <template #description>

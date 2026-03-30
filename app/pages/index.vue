@@ -78,9 +78,10 @@ async function onError(event) {
   <div class="flex flex-col items-center">
     <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas anotações onde, como e quando você quiser!"
       :ui="{
-        container: 'flex flex-col py-4 sm:py-5 lg:py-8'
+        container: 'flex flex-col py-4 sm:py-5 lg:py-13'
       }" />
-    <div class="flex p-6 size-80 border-1 border-yellow-800 items-center justify-center rounded-xl">
+    <div class="flex h-80 w-xs p-6 dark:border-1 dark:border-yellow-800
+    items-center justify-center rounded-xl  shadow-[0px_0px_10px_#00000083]">
       <UForm 
         :ui="{base: 'flex flex-col w-xl items-center'}"
         :state="usuario" 
@@ -89,20 +90,23 @@ async function onError(event) {
         @submit="redirecionar" 
         @error="onError"
       > 
-      <div class="flex gap-1 items-center">
-        <img class='w-18' src="/loginHomelist.png"/>
-        <h1 class="text-2xl mt-5 font-extrabold">Login</h1>
+      <div class="flex gap-1 mb-1 -mt-4 flex-col justify-center items-center">
+        <div class="flex justify-center items-center gap-1">
+          <img class='w-18' src="/loginHomelist.png"/>
+          <h1 class="text-2xl mt-5 font-extrabold">Login</h1>
+        </div>
+        <p class="text-xs">Insira seus dados para entrar no lar das tarefas.</p>
       </div>
-        <UFormField label="Usuário" name="nome">
-          <UInput v-model="usuario.nome" placeholder="Digite seu usuário" />
+        <UFormField class="w-full" label="Usuário" name="nome">
+          <UInput class="w-full" v-model="usuario.nome" placeholder="Digite seu usuário" />
         </UFormField>
 
-        <UFormField label="Password" name="password">
-          <UInput v-model="usuario.senha" type="password" 
+        <UFormField class="w-full" label="Password" name="password">
+          <UInput class="w-full" v-model="usuario.senha" type="password" 
           placeholder="Digite sua senha"/>
         </UFormField>
 
-        <UButton type="submit">
+        <UButton class="w-full text-neutral-900" type="submit">
           Enviar
         </UButton>
       </UForm>

@@ -16,9 +16,4 @@
   --color-yellow-900: #785314;
   --color-yellow-950: #452E07;
 
-  --erro: #ff2e2e;
-}
-
-#erro {
-  color: var(--erro)
 }
