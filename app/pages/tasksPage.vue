@@ -15,11 +15,27 @@ const usuarioLogado = inject('usuarioLogadoP')
       }" />
     <div v-if="usuarioLogado" class="flex flex-col w-full gap-2 items-center">
     
-      <div class="flex justify-center gap-1">
+      <div class="flex w-xl justify-around gap-1">
+        <div class="flex justify-center gap-1">
         <UAvatar :alt="usuarioLogado?.nome" size="md" />
         <UUser
           :name="usuarioLogado?.nome"
         />
+        </div>
+        <UDrawer>
+          <UButton label="Estatísticas" color="neutral" variant="subtle" trailing-icon="i-lucide-chevron-up" />
+
+          <template #content>
+            <Placeholder class="flex h-0 w-sm m-4 items-center justify-center" />
+            <div class="flex items-center justify-center my-24 flex-col">
+              <p class=" text-primary">Total de tarefas: {{ usuarioLogado.tasks.length }}</p>
+              <p class=" text-success">Tarefas feitas: {{ usuarioLogado.tasks.filter(tasks => tasks.concluida === true).length }}</p>
+              <p class=" text-error">Tarefas para fazer: {{ usuarioLogado.tasks.filter(tasks => tasks.concluida === false).length }}</p>
+            </div>
+          </template>
+        </UDrawer>
+        
+
       </div>
 
       <PreencherTask />

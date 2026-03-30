@@ -78,7 +78,7 @@ async function onError(event) {
   <div class="flex flex-col items-center">
     <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas anotações onde, como e quando você quiser!"
       :ui="{
-        container: 'flex flex-col py-2 sm:py-3 lg:py-8'
+        container: 'flex flex-col py-4 sm:py-5 lg:py-8'
       }" />
     <div class="flex p-6 size-80 border-1 border-yellow-800 items-center justify-center rounded-xl">
       <UForm 
