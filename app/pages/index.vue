@@ -76,7 +76,7 @@ async function onError(event) {
 <template>
   
   <div class="flex flex-col items-center">
-    <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas anotações onde, como e quando você quiser!"
+    <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas tarefas onde, como e quando você quiser!"
       :ui="{
         container: 'flex flex-col py-4 sm:py-5 lg:py-13'
       }" />

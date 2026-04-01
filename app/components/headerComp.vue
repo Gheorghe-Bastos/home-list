@@ -1,4 +1,14 @@
-<script setup lang="ts">
+<script setup>
+
+import { inject } from 'vue'
+
+const usuarioLogado = inject('usuarioLogadoP')
+
+function voltar() {
+  usuarioLogado.value = null
+  localStorage.removeItem('usuario_sessao')
+  navigateTo('/')
+}
 
 </script>
 
@@ -17,6 +27,8 @@
 
 
     <template #right>
+      <UButton v-if="usuarioLogado" @click="voltar" color="primary" variant="ghost" to="/" icon="tabler:arrow-back-up" aria-label="Home" />
+      
       <UColorModeButton color="primary" />
 
       <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">

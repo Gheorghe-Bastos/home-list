@@ -30,6 +30,10 @@ onMounted(async () => {
   const salvo = localStorage.getItem('usuario_sessao')
   if (salvo) {
     usuarioLogado.value = JSON.parse(salvo)
+    navigateTo('/tasksPage')
+  } else {
+    usuarioLogado.value = null
+    navigateTo('/')
   }
 })
 

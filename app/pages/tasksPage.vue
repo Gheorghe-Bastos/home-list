@@ -9,7 +9,7 @@ const usuarioLogado = inject('usuarioLogadoP')
 
 <template>
   <div class="flex flex-col items-center">
-    <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas anotações onde, como e quando você quiser!"
+    <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas tarefas onde, como e quando você quiser!"
       :ui="{
         container: 'flex flex-col py-0 sm:py-4 lg:py-17'
       }" />
