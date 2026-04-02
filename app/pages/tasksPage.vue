@@ -9,9 +9,9 @@ const usuarioLogado = inject('usuarioLogadoP')
 
 <template>
   <div class="flex flex-col items-center">
-    <UPageHero title="Homelist - O Lar das Tarefas" description="Faça suas tarefas onde, como e quando você quiser!"
+    <UPageHero title="Homelist - O Lar das Tarefas"
       :ui="{
-        container: 'flex flex-col py-0 sm:py-4 lg:py-17'
+        container: 'flex flex-col py-0 sm:py-4 lg:pb-8 lg:pt-10'
       }" />
     <div v-if="usuarioLogado" class="flex flex-col w-full gap-2 items-center">
     
@@ -39,8 +39,8 @@ const usuarioLogado = inject('usuarioLogadoP')
       </div>
 
       <PreencherTask />
-      <div class="h-95 sm:h-76 md:h-78
-            lg:h-80 flex flex-col items-center w-full overflow-y-auto">
+      <div class="h-124 sm:h-104 md:h-122
+            lg:h-112 flex flex-col items-center w-md overflow-y-auto">
         <task />
       </div>
     </div>
